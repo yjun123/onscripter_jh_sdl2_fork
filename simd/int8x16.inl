@@ -105,12 +105,12 @@ namespace simd {
 
   inline void store_u_32(void* m, uint8x16 a) {
 #ifdef USE_SIMD_X86_SSE2
-#if !defined(__clang_major__) || __clang_major__ >= 8
-    _mm_storeu_si32(reinterpret_cast<__m128i*>(m), a);
-#else
-    // _mm_storeu_si32 is unavailable in Clang 7;
+//#if !defined(__clang_major__) || __clang_major__ >= 8
+//    _mm_storeu_si32(reinterpret_cast<__m128i*>(m), a);
+//#else
+//    // _mm_storeu_si32 is unavailable in Clang 7;
     _mm_store_ss(reinterpret_cast<float*>(m), _mm_castsi128_ps(a));
-#endif
+//#endif
 #elif USE_SIMD_ARM_NEON
     vst1q_lane_u32(reinterpret_cast<uint32_t*>(m), a, 1);
 #endif
