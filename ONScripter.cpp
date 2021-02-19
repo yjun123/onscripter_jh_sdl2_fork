@@ -732,7 +732,7 @@ void ONScripter::flushDirect( SDL_Rect &rect, int refresh_mode )
     SDL_UnlockSurface(accumulation_surface);
 
     screen_dirty_flag = false;
-    #if defined(ANDROID) || defined(_MSC_VER)   
+    #if defined(ANDROID) || defined(_MSC_VER) || defined(LINUX)  
         if (compatibilityMode) {
             SDL_RenderClear(renderer);
         }
